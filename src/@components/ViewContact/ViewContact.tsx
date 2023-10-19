@@ -99,7 +99,7 @@ const ViewContact = ({ id,submitText,handleContactChange,handleDelete,handleFavo
         </Fragment>
       ) : (
         <EmptyView
-          img="/asset/images/EmptyContact.png"
+          img="/static/media/asset/images/EmptyContact.png"
           iconCSS={{
             width: "200px",
             height: "200px",

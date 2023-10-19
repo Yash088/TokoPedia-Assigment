@@ -42,7 +42,7 @@ const Contact = () => {
       <Header searchInput={searchInput} setSearchInput={setSearchInput} />
       {contactMethod?.action?.length ? (
         <Fragment>
-          {contactMethod?.action == "Edit" || contactMethod?.action == "Add" ? (
+          {contactMethod?.action == "Edit" || contactMethod?.action == "Create" ? (
             <ContactForm
               handleContactChange={handleContactChange}
               handleDelete={handleDelete}
@@ -133,7 +133,7 @@ const Contact = () => {
             </div>
           ) : (
             <EmptyView
-              img="/asset/images/EmptyContact.png"
+              img="/static/media/asset/images/EmptyContact.png"
               iconCSS={{
                 width: "200px",
                 height: "200px",

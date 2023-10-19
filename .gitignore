@@ -10,7 +10,13 @@
 
 # production
 /build
+# Firebase Files
+firebase.json
+firebase-debug.log
 
+# Firebase Hosting Files
+**/firebase.json
+**/.firebaserc
 # misc
 .DS_Store
 .env.local

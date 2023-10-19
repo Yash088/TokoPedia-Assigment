@@ -24,7 +24,9 @@ module.exports = {
         use: {
           loader: "file-loader",
           options: {
-            outputPath: "static/media/",
+            name: "[name].[ext]",
+            outputPath: "static/media",
+            publicPath: "/static/media",
           },
         },
       },
