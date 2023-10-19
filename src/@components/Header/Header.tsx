@@ -6,11 +6,12 @@ import SearchBox from "../SearchBox/SearchBox"
 import { HeadingStyle } from "./HeaderStyle"
 import { searchBoxInterface } from "../../interfaces/contact"
 
+
 const Header = (props:searchBoxInterface) => {
   return (
     <div  css={HeadingStyle.container}>
     <div css={HeadingStyle.imgContianer}>  
-    <img src='/asset/images/ContactsLogo.png' style={{width:'30px'}} alt='header-element'/>
+    <img src='../../asset/images/ContactsLogo.png' style={{width:'30px'}} alt='header-element'/>
     <p css={HeadingStyle.title}>Contacts</p>
     </div>
     <div css={css`
