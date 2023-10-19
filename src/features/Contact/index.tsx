@@ -15,6 +15,8 @@ import ResponsivePagination from "react-responsive-pagination";
 import ContactList from "../../@components/ContactList/ContactList";
 import { Fragment } from "react";
 import ViewContact from "../../@components/ViewContact/ViewContact";
+import ContactImg from "../../asset/images/EmptyContact.png";
+
 
 const Contact = () => {
   const {
@@ -133,7 +135,7 @@ const Contact = () => {
             </div>
           ) : (
             <EmptyView
-              img="../../asset/images/EmptyContact.png"
+              img={ContactImg}
               iconCSS={{
                 width: "200px",
                 height: "200px",

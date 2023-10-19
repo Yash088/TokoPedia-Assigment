@@ -12,6 +12,7 @@ import ContactFormStyle from "../ContactForm/ContactFormStyle";
 import { css } from "@emotion/react";
 import Button from "../../@common/Button/Button";
 import { smTablet, sTablet } from "../../utils/commonStyle";
+import EmptyImage from "../../asset/images/EmptyContact.png";
 
 interface IViewContact extends IContactForm {
   id: string;
@@ -99,7 +100,7 @@ const ViewContact = ({ id,submitText,handleContactChange,handleDelete,handleFavo
         </Fragment>
       ) : (
         <EmptyView
-          img="../../asset/images/EmptyContact.png"
+          img={EmptyImage}
           iconCSS={{
             width: "200px",
             height: "200px",
