@@ -20,26 +20,17 @@ module.exports = {
         },
       },
       {
-        test: /\.(svg|jpe?g|png|gif|mp4)$/i,
-        use: {
-          loader: "file-loader",
-          options: {
-            name: "[name].[ext]",
-            outputPath: "static/media",
-            publicPath: "/static/media",
-          },
-        },
-      },
-      {
-        test: /\.(js|jsx)$/,
+        test: /\.(jsx|tsx|js|ts)$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
+        use: ["babel-loader"],
       },
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
       },
     ],
   },

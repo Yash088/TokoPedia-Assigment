@@ -133,7 +133,7 @@ const Contact = () => {
             </div>
           ) : (
             <EmptyView
-              img="/static/media/asset/images/EmptyContact.png"
+              img="/asset/images/EmptyContact.png"
               iconCSS={{
                 width: "200px",
                 height: "200px",
