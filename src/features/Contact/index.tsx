@@ -14,10 +14,9 @@ import { theme } from "../../Theme/Theme";
 import Header from "../../@components/Header/Header";
 import ContactStyle from "./style";
 import ContactList from "../../@components/ContactList/ContactList";
+import ViewContact from "../../@components/ViewContact/ViewContact";
+import ContactForm from "../../@components/ContactForm/ContactForm";
 
-
-const ContactForm  = lazy(()=> import("../../@components/ContactForm/ContactForm"));
-const ViewContact  = lazy(()=> import("../../@components/ViewContact/ViewContact"));
 
 
 const Contact = () => {
@@ -45,7 +44,7 @@ const Contact = () => {
       <Header searchInput={searchInput} setSearchInput={setSearchInput} />
       {contactMethod?.action?.length ? (
         <Fragment>
-          {contactMethod?.action == CONTACT_ACTION_METHOD.EDIT || contactMethod?.action == "Create" ? (
+          {contactMethod?.action == CONTACT_ACTION_METHOD.EDIT || contactMethod?.action == CONTACT_ACTION_METHOD.CREATE ? (
             <ContactForm
               handleContactChange={handleContactChange}
               handleDelete={handleDelete}
