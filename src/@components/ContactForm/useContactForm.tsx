@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import {
   addContact,
@@ -8,6 +8,7 @@ import {
 import { Contact, Phone, IContactForm } from "../../interfaces/contact";
 import { ContactContext } from "../../Context/ContactContext";
 import { CONTACT_ACTION } from "../../actions/action";
+import { CONTACT_ACTION_METHOD, CONTACT_REG_EXP } from "../../utils/utils";
 
 const useContactForm = ({
   data,
@@ -45,12 +46,11 @@ const useContactForm = ({
     arr.splice(index, 1);
     setPhone([...arr]);
   };
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     // Send formDataObject to API here
     const tempData = formData;
-
-    if (submitText === "Create") {
+    if (submitText === CONTACT_ACTION_METHOD.VIEW) {
       addContact(tempData)
         .then((result) => {
           // Handle the result
@@ -94,7 +94,6 @@ const useContactForm = ({
       })
         .then((result: any) => {
           if (result?.data) {
-           
             dispatch({
               type: CONTACT_ACTION.EDIT_CONTACT,
               payload: {
@@ -115,8 +114,11 @@ const useContactForm = ({
         });
     }
   };
-  if (submitText == "View") {
-  }
+  const isValid =
+    hasError ||
+    !formData?.first_name?.match(CONTACT_REG_EXP.onlyDigitNumber) ||
+    !formData?.last_name?.match(CONTACT_REG_EXP.onlyDigitNumber) ||
+    phones?.some((phone) => !phone?.number?.match(CONTACT_REG_EXP.phoneNumber));
 
   return {
     hasError,
@@ -127,6 +129,7 @@ const useContactForm = ({
     formData,
     phones,
     setPhone,
+    isValid,
   };
 };
 

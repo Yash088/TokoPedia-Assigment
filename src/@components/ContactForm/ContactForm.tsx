@@ -2,7 +2,7 @@
 
 import { memo } from "react";
 import InputField from "../../@common/Input/Input";
-import { CloseIconSVG, PlusSVG } from "../../utils/utils";
+import { CONTACT_REG_EXP, CloseIconSVG, PlusSVG } from "../../utils/utils";
 import ContactFormStyle from "./ContactFormStyle";
 import Button from "../../@common/Button/Button";
 import { IContactForm } from "../../interfaces/contact";
@@ -14,8 +14,6 @@ const ContactForm = memo(
     formId,
     data,
     handleContactChange,
-    handleDelete,
-    handleFavourite,
   }: IContactForm) => {
     const {
       hasError,
@@ -26,6 +24,7 @@ const ContactForm = memo(
       handlePhoneChange,
       handleRemovePhone,
       handleChange,
+      isValid
     } = useContactForm({ formId, data, handleContactChange, submitText });
     return (
       <div css={ContactFormStyle.container}>
@@ -41,7 +40,7 @@ const ContactForm = memo(
           <InputField
             label="First Name"
             name="first_name"
-            errorRegex={/^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$/}
+            errorRegex={CONTACT_REG_EXP.onlyDigitNumber}
             errorMessage="Please enter valid first name"
             value={formData?.first_name}
             handleChange={(value, err) => {
@@ -51,7 +50,7 @@ const ContactForm = memo(
           <InputField
             label="Last Name"
             name="last_name"
-            errorRegex={/^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$/}
+            errorRegex={CONTACT_REG_EXP.onlyDigitNumber}
             errorMessage="Please enter valid last name"
             handleChange={(value, err) => {
               handleChange("last_name", value, err);
@@ -67,7 +66,7 @@ const ContactForm = memo(
                 type="tel"
                 label="Contact Number"
                 name={`contactPhone-${index}`}
-                errorRegex={/^\+\d{1,3}\d{10}$/}
+                errorRegex={CONTACT_REG_EXP.phoneNumber}
                 errorMessage="Please enter number in format +91phone number"
                 value={phones[index].number}
                 handleChange={(value, err) => {
@@ -91,7 +90,7 @@ const ContactForm = memo(
           <Button
             icon={PlusSVG()}
             text="Add Phone Number"
-            disabled={!phones[phones?.length - 1]?.number?.length}
+            disabled={!phones[phones?.length - 1]?.number?.match(CONTACT_REG_EXP.phoneNumber)}
             onClick={() => {
               const arr = [...phones];
               arr.push({ number: "" });
@@ -103,10 +102,7 @@ const ContactForm = memo(
             text={submitText}
             background="primary"
             disabled={
-              hasError ||
-              !formData?.first_name?.length ||
-              !formData?.last_name?.length ||
-              !phones[0]?.number?.length
+              isValid
             }
             onClick={(e) => {
               if (!hasError) {

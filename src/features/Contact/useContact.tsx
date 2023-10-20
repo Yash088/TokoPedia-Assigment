@@ -1,5 +1,5 @@
 
-import {  PER_PAGE, } from "../../utils/utils";
+import {  CONTACT_ACTION_METHOD, PER_PAGE, } from "../../utils/utils";
 import { useContext, useEffect, useState } from "react";
 import { ContactContext } from "../../Context/ContactContext";
 import { Contact } from "../../interfaces/contact";
@@ -29,7 +29,7 @@ const useContact = () => {
         if(res?.data?.delete_contact_by_pk?.id){
           dispatch({type:CONTACT_ACTION.DELETE_CONTACT,payload:{id:Number(id)}});
         }
-        if(contactMethod.action == 'View'){
+        if(contactMethod.action == CONTACT_ACTION_METHOD.VIEW){
           handleContactChange('')
         }
       }

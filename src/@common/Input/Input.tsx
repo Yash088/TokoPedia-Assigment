@@ -5,6 +5,7 @@ import {
   useState,
 } from "react";
 import "./InputStyle.css";
+import { CONTACT_REG_EXP } from "../../utils/utils";
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
   errorRegex?: RegExp;
@@ -26,7 +27,7 @@ const InputField: React.FC<InputProps> = ({
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    if (type === 'tel' && !value.match(/^[0-9+-]*$/)) {
+    if (type === 'tel' && !value.match(CONTACT_REG_EXP.onlyNumber)) {
       return;
     }
     const newValue = e.target.value;

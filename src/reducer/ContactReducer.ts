@@ -15,39 +15,26 @@ const ContactReducer = (state, action) => {
         ...state,
         contacts: [...state.contacts, action.payload],
       };
-    case CONTACT_ACTION.ADD_TO_FAVORITE_CONTACT:
-      const redularContacts = state.contacts.map((contact) => {
-        if (contact.id === action.payload.id) {
-          return action.payload.data;
-        }
-        return contact;
-      });
-
-      return {
-        ...state,
-        contacts:redularContacts,
-        favouriteData:[...state.favouriteData, action.payload.data]
-      };
-    case CONTACT_ACTION.ADD_TO_FAVORITE_CONTACT:
-      const regularContacts = state.contacts.filter((contact) => {
-        return contact.id !== action.payload.id
-      });
-      return {
-        ...state,
-        // contacts:regularContacts,
-        // favouriteData:[...state.favouriteData, action.payload.data]
-      };
-    case CONTACT_ACTION.REMOVE_FAVORITE_CONTACT:
-      const favouriteData = state.favouriteData?.filter((contact) => {
-        return contact.id !== action.payload.id
-      });
-      const newData = state.contacts;
-      newData?.push(action.payload.data);
-      return{
-        ...state,
-        // contacts:[...newData],
-        // favouriteData:favouriteData
-      };
+    // case CONTACT_ACTION.ADD_TO_FAVORITE_CONTACT:
+    //   const regularContacts = state.contacts.filter((contact) => {
+    //     return contact.id !== action.payload.id
+    //   });
+    //   return {
+    //     ...state,
+    //     // contacts:regularContacts,
+    //     // favouriteData:[...state.favouriteData, action.payload.data]
+    //   };
+    // case CONTACT_ACTION.REMOVE_FAVORITE_CONTACT:
+    //   const favouriteData = state.favouriteData?.filter((contact) => {
+    //     return contact.id !== action.payload.id
+    //   });
+    //   const newData = state.contacts;
+    //   newData?.push(action.payload.data);
+    //   return{
+    //     ...state,
+    //     // contacts:[...newData],
+    //     // favouriteData:favouriteData
+    //   };
     case CONTACT_ACTION.EDIT_CONTACT:
       
       const updatedContacts = state.contacts?.map((contact) => {

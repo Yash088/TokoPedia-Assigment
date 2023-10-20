@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 
 import { SerializedStyles, css } from '@emotion/react';
-import { flexCenter, mTablet } from '../../utils/commonStyle';
 import { InputHTMLAttributes } from 'react';
+import { flexCenter, mTablet } from '../../utils/commonStyle';
 import { searchBoxInterface } from '../../interfaces/contact';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement>, searchBoxInterface {

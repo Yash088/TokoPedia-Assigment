@@ -47,7 +47,8 @@ const Button: FC<ButtonProps> = ({
       }}
       type={type}
       disabled={disabled}
-      aria-labelledby={text || "icon-component"}
+      aria-labelledby={text || "icon-button"}
+      aria-label={text || "icon-button"}
       css={() => [
         ` display: flex;
         align-items: center;

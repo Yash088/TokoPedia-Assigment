@@ -1,15 +1,15 @@
 /** @jsxImportSource @emotion/react */
 
 import { Fragment } from "react";
+import { css } from "@emotion/react";
 import Avatar from "../../@common/Avatar/Avatar";
 import EmptyView from "../../@common/EmptyView/EmptyView";
 import Loader from "../../@common/Loader/Loader";
-import { CloseIconSVG, DeleteIcon, PencilIcon, PhoneSVG, StarIcon } from "../../utils/utils";
+import { CONTACT_ACTION_METHOD, CloseIconSVG, DeleteIcon, PencilIcon, PhoneSVG, StarIcon } from "../../utils/utils";
 import { ViewContactStyle } from "./ViewContactStyle";
 import { IContactForm,  } from "../../interfaces/contact";
 import useViewContact from "./useViewContact";
 import ContactFormStyle from "../ContactForm/ContactFormStyle";
-import { css } from "@emotion/react";
 import Button from "../../@common/Button/Button";
 import { smTablet, sTablet } from "../../utils/commonStyle";
 import EmptyImage from "../../asset/images/EmptyContact.png";
@@ -47,7 +47,7 @@ const ViewContact = ({ id,submitText,handleContactChange,handleDelete,handleFavo
             padding: 0;
           `}
           onClick={() => {
-            handleContactChange("Edit", String(id), data);
+            handleContactChange(CONTACT_ACTION_METHOD.EDIT, String(id), data);
           }}
         />
         <Button

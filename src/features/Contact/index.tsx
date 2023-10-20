@@ -1,21 +1,23 @@
 /** @jsxImportSource @emotion/react */
 
+import { Fragment, lazy } from "react";
 import { css } from "@emotion/react";
+import ContactImg from "../../asset/images/EmptyContact.png"
 import EmptyView from "../../@common/EmptyView/EmptyView";
+import ResponsivePagination from "react-responsive-pagination";
 import Loader from "../../@common/Loader/Loader";
 import useContact from "./useContact";
 import Button from "../../@common/Button/Button";
 import { flexCenter, removeTapColor } from "../../utils/commonStyle";
-import { PlusColoredSVG, PlusSVG } from "../../utils/utils";
+import { CONTACT_ACTION_METHOD, PlusColoredSVG, PlusSVG } from "../../utils/utils";
 import { theme } from "../../Theme/Theme";
 import Header from "../../@components/Header/Header";
 import ContactStyle from "./style";
-import ContactForm from "../../@components/ContactForm/ContactForm";
-import ResponsivePagination from "react-responsive-pagination";
 import ContactList from "../../@components/ContactList/ContactList";
-import { Fragment } from "react";
-import ViewContact from "../../@components/ViewContact/ViewContact";
-import ContactImg from "../../asset/images/EmptyContact.png";
+
+
+const ContactForm  = lazy(()=> import("../../@components/ContactForm/ContactForm"));
+const ViewContact  = lazy(()=> import("../../@components/ViewContact/ViewContact"));
 
 
 const Contact = () => {
@@ -24,7 +26,6 @@ const Contact = () => {
     data,
     contactMethod,
     handleContactChange,
-    favouriteData,
     handleDelete,
     totalPage,
     handleFavourite,
@@ -44,7 +45,7 @@ const Contact = () => {
       <Header searchInput={searchInput} setSearchInput={setSearchInput} />
       {contactMethod?.action?.length ? (
         <Fragment>
-          {contactMethod?.action == "Edit" || contactMethod?.action == "Create" ? (
+          {contactMethod?.action == CONTACT_ACTION_METHOD.EDIT || contactMethod?.action == "Create" ? (
             <ContactForm
               handleContactChange={handleContactChange}
               handleDelete={handleDelete}
@@ -87,7 +88,7 @@ const Contact = () => {
                   background="transparent"
                   sx={ContactStyle.button}
                   onClick={() => {
-                    handleContactChange("Create");
+                    handleContactChange(CONTACT_ACTION_METHOD.CREATE);
                   }}
                 />
 
@@ -96,7 +97,7 @@ const Contact = () => {
                     key={`${contact?.id}-${index}`}
                     onClick={() => {
                       if (window.innerWidth <= 768) {
-                        handleContactChange("View", String(contact?.id));
+                        handleContactChange(CONTACT_ACTION_METHOD.VIEW, String(contact?.id));
                       }
                     }}
                     css={css`
@@ -148,7 +149,7 @@ const Contact = () => {
                     background="transparent"
                     icon={PlusSVG()}
                     onClick={() => {
-                      handleContactChange("Create");
+                      handleContactChange(CONTACT_ACTION_METHOD.CREATE);
                     }}
                     sx={css`
                       margin-top: 5px;

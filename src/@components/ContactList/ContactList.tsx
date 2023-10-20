@@ -1,13 +1,13 @@
 /** @jsxImportSource @emotion/react */
 
+import { Fragment } from "react";
 import { css } from "@emotion/react";
 
 import Avatar from "../../@common/Avatar/Avatar";
 import Button from "../../@common/Button/Button";
 import { IContactList } from "../../interfaces/contact";
-import { DeleteIcon, PencilIcon, StarIcon } from "../../utils/utils";
+import { CONTACT_ACTION_METHOD, DeleteIcon, PencilIcon, StarIcon } from "../../utils/utils";
 import { ellipsis, sTablet, smTablet } from "../../utils/commonStyle";
-import { Fragment } from "react";
 
 
 const ContactList = ({contact,favourite,handleFavourite,handleContactChange,handleDelete}:IContactList) => {
@@ -58,7 +58,7 @@ const ContactList = ({contact,favourite,handleFavourite,handleContactChange,hand
         handleFavourite();
       }} sx={css`padding:0`}/>
       <Button icon={PencilIcon()} sx={css`padding:0`} onClick={()=>{
-        handleContactChange('Edit',String(contact?.id),contact);
+        handleContactChange(CONTACT_ACTION_METHOD.EDIT,String(contact?.id),contact);
       }}/>
       <Button icon={DeleteIcon()} sx={css`padding:0`}onClick={()=>{
         handleDelete(String(contact?.id))
