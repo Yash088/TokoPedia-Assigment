@@ -50,7 +50,8 @@ const useContactForm = ({
     e.preventDefault();
     // Send formDataObject to API here
     const tempData = formData;
-    if (submitText === CONTACT_ACTION_METHOD.VIEW) {
+    if (submitText === CONTACT_ACTION_METHOD.CREATE) {
+      formData.phones = phones;
       addContact(tempData)
         .then((result) => {
           // Handle the result

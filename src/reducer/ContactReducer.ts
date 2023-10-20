@@ -11,9 +11,11 @@ const ContactReducer = (state, action) => {
         loading: false,
       };
     case CONTACT_ACTION.ADD_CONTACT:
+      const tempContact = state?.totalCount < 10 ? [...state.contacts, action.payload] : state.contacts
       return {
         ...state,
-        contacts: [...state.contacts, action.payload],
+        contacts: tempContact,
+        totalCount:state?.totalCount + 1,
       };
     // case CONTACT_ACTION.ADD_TO_FAVORITE_CONTACT:
     //   const regularContacts = state.contacts.filter((contact) => {
@@ -52,8 +54,9 @@ const ContactReducer = (state, action) => {
       return {
         ...state,
         contacts: state.contacts.filter(
-          (contact) => contact.id !== action.payload.id
+          (contact) => contact?.id !== action?.payload?.id
         ),
+        totalCount: state.totalCount - 1
       };
     case CONTACT_ACTION.SET_LOADING:
       return {

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import { Fragment, lazy } from "react";
+import { Fragment } from "react";
 import { css } from "@emotion/react";
 import ContactImg from "../../asset/images/EmptyContact.png"
 import EmptyView from "../../@common/EmptyView/EmptyView";
